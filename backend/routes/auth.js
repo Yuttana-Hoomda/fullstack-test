@@ -1,14 +1,14 @@
 import express from 'express';
-import pool from '../config/db';
+import pool from '../config/db.js';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
+import { protect } from '../middlewares/auth.js';
 
 const router = express.Router();
 
 const cookieOptions = {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'producton',
-    sameSite: 'Strict',
+    secure: 'false',
+    sameSite: 'lax',
     maxAge: 30*24*60*60*1000
 }
 
@@ -39,9 +39,7 @@ router.post('/login', async (req, res) => {
 
     const userData = user.rows[0];
 
-    const isMatch = await bcrypt.compare(password, userData.password);
-
-    if (!isMatch) {
+    if (userData.password != password) {
         return res.status(400).json({
             message: 'Invalid credentials'
         })
@@ -56,3 +54,14 @@ router.post('/login', async (req, res) => {
         }
     })
 })
+
+router.get("/user", protect, async (req, res) => {
+    res.json(req.user);
+})
+
+router.post("/logout", (req, res) => {
+    res.cookie("token", "", { ...cookieOptions, maxAge: 1});
+    res.json({ message: "Log out success"})
+})
+
+export default router
