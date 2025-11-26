@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Transaction from "./pages/Transaction";
 import type { User } from "./types/type";
 import axios from "axios";
+import Layout from "./components/Layout";
+import DepositAndWithdraw from "./pages/DepositAndWithdraw";
+import { useUser } from "./stores/userStore";
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
-  const [err, setErr] = useState("");
-  const [loading, setLoading] = useState(true);
+  const {
+    user,
+    setUser,
+    error,
+    setError,
+    loading,
+    setLoading
+  } = useUser()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -30,11 +36,12 @@ function App() {
   }, [])
   return (
     <BrowserRouter>
-      {user && <Navbar setUser={setUser}/>}
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={user ? <Navigate to='/'/> : <Login setUser={setUser}/>}/>
-        <Route path="/transaction" element={<Transaction/>}/>
+        <Route path="/login" element={user ? <Navigate to='/'/> : <Login/>}/>
+        <Route element={<Layout/>}>
+          <Route path="/" element={<DepositAndWithdraw/>}/>
+          <Route path="/transaction" element={<Transaction/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   )

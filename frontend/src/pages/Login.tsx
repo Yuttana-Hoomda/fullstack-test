@@ -2,8 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import type { UserProps } from '../types/type';
+import { useUser } from '../stores/userStore';
 
-const Login: React.FC<UserProps> = ({setUser}) => {
+const Login = () => {
+    const {setUser} = useUser()
     const [form, setForm] = useState({
         email: "",
         password: ""
