@@ -7,11 +7,12 @@ const AmountInput: React.FC<AmountInputProps> = ({
     onChange
 }) => {
     return (
-        <div> <h2>จำนวนเงิน *</h2>
+        <div className='space-y-2'> 
+            <h2 className='text-lg'>จำนวนเงิน *</h2>
             <input
                 placeholder='กรอกจำนวนเงิน'
                 type='number'
-                className='border p-2 border-gray-500 rounded-lg w-full appearance-none'
+                className='formInput'
                 value={ value ?? ''}
                 onChange={(e) => 
                     onChange(e.target.value == '' ? undefined : Number(e.target.value))

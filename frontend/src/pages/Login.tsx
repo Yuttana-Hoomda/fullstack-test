@@ -29,26 +29,26 @@ const Login = () => {
     return (
         <div className='min-h-screen flex justify-center items-center'>
             <form 
-                className='flex flex-col space-y-4 w-full max-w-[400px] max-lg:px-8'
+                className='flex flex-col space-y-4 w-full max-w-[400px] max-lg:px-8 max-md:space-y-6'
                 onSubmit={handleSubmit}
                 >
-                <div>
-                    <h2>Email *</h2>
+                <div className='space-y-2'>
+                    <h2 className='text-lg'>Email *</h2>
                     <input
                         placeholder='Email'
                         type='email'
-                        className='border p-2 border-gray-500 rounded-lg w-full'
+                        className='formInput'
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         required
                     />
                 </div>
-                <div>
-                    <h2>Password *</h2>
+                <div className='space-y-2'>
+                    <h2 className='text-lg'>Password *</h2>
                     <input
                         placeholder='Password'
                         type='password'
-                        className='border p-2 border-gray-500 rounded-lg w-full'
+                        className='formInput'
                         value={form.password}
                         onChange={(e) => setForm({ ...form, password: e.target.value })}
                         required
@@ -58,7 +58,7 @@ const Login = () => {
                     )}
                 </div>
                 <button 
-                    className='bg-gray-700 text-white p-2 w-full mt-4 rounded-xl'>
+                    className='bg-gray-700 text-white p-2 w-full mt-4 rounded-xl max-md:py-4 text-xl'>
                     Login
                 </button>
             </form>

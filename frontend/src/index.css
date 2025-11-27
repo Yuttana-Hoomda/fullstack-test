@@ -5,3 +5,11 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.formInput {
+  @apply focus:outline-black border p-2 border-gray-500 rounded-lg w-full max-md:py-4 text-xl
+}
+
+.depositButton {
+  @apply py-2 rounded-lg w-full max-md:py-3 text-lg
+}

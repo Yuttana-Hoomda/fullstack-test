@@ -3,7 +3,7 @@ import TablePaginate from '../components/Table'
 
 const Transaction = () => {
   return (
-    <div className='flex flex-col gap-4 justify-center max-md:h-full'>
+    <div className='flex flex-col gap-4 justify-center max-md:gap-10'>
       <h2 className='text-2xl max-md:text-center'>ประวัติรายการฝากถอน</h2>
       <div><TablePaginate/></div>
     </div>

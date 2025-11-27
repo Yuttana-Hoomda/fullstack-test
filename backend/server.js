@@ -16,9 +16,10 @@ app.use(cors({
 }))
 app.use(express.json());
 app.use(cookieParser())
+
 //create table
-// createTables()
-// insertUsers()
+createTables()
+insertUsers()
 
 app.get("/", (req, res) => {
     res.send("Server is working!");

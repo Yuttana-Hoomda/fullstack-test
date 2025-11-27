@@ -40,9 +40,9 @@ const DepositAndWithdraw = () => {
   }
 
   return (
-    <div className=' flex flex-col justify-center max-md:h-full '>
-      <h2 className='text-2xl'>จำนวนเงินคงเหลือ {nfObject.format(bankStore.balance)} บาท</h2>
-      <form className='flex flex-col gap-5 mt-6 px-8'>
+    <div className=' flex flex-col justify-center max-md:h-full space-y-5'>
+      <h2 className='text-2xl font-bold'>จำนวนเงินคงเหลือ {nfObject.format(bankStore.balance)} บาท</h2>
+      <form className='flex flex-col space-y-5 mt-6 px-8 max-md:space-y-10'>
         <div>
           <AmountInput 
             value={form.amount} 
@@ -52,14 +52,14 @@ const DepositAndWithdraw = () => {
         <div className='flex justify-between text-white gap-4'>
           <button
             type='button'
-            className='bg-green-500 py-1 rounded-lg w-full'
+            className='bg-green-500 depositButton'
             onClick={() => handleSubmit('dep')}
           >
             ฝาก
           </button>
           <button
             type='button'
-            className='bg-red-500 py-2 rounded-lg w-full'
+            className='bg-red-500 depositButton'
             onClick={() => handleSubmit('with')}
           >
             ถอน
